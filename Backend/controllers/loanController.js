@@ -1,4 +1,4 @@
-import Loan from "../models/Loan.js";
+import Loan from "../model/Loan.js";
 
 // @desc   Add a new loan
 // @route  POST /api/loans

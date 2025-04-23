@@ -1,4 +1,4 @@
-import RecurringTransaction from "../models/RecurringTransaction.js";
+import RecurringTransaction from "../model/RecurringTransaction.js";
 
 // @desc   Add a new recurring transaction
 // @route  POST /api/recurring-transactions

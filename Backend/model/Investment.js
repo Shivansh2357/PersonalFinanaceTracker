@@ -15,10 +15,10 @@ const investmentSchema = new mongoose.Schema(
     name: { 
         type: String,
         required: true 
-    }, // Example: "Tesla", "Bitcoin", "Apartment in NYC"
+    }, 
     symbol: { 
         type: String 
-    }, // Example: "TSLA", "BTC" (only for stocks and crypto)
+    }, 
     amountInvested: { 
         type: Number, 
         required: true 
@@ -26,7 +26,7 @@ const investmentSchema = new mongoose.Schema(
     quantity: { 
         type: Number, 
         required: true 
-    }, // Number of shares, crypto units, or properties
+    }, // Number of shares
     purchasePrice: { 
         type: Number, 
         required: true 

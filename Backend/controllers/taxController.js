@@ -1,4 +1,4 @@
-import Tax from "../models/Tax.js";
+import Tax from "../model/Tax.js";
 
 // Create a new tax record
 export const createTax = async (req, res) => {

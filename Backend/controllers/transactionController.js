@@ -1,4 +1,4 @@
-import Transaction from "../models/Transaction.js";
+import Transaction from "../model/Transaction.js";
 
 // @desc   Add new transaction
 // @route  POST /api/transactions
@@ -52,6 +52,61 @@ export const deleteTransaction = async (req, res) => {
 
     await transaction.deleteOne();
     res.json({ message: "Transaction deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+// @desc   Get a single transaction by ID
+// @route  GET /api/transactions/:id
+// @access Private
+export const getTransactionById = async (req, res) => {
+  try {
+    const transaction = await Transaction.findById(req.params.id);
+
+    if (!transaction) {
+      return res.status(404).json({ message: "Transaction not found" });
+    }
+
+    // Ensure user owns transaction
+    if (transaction.user.toString() !== req.user.id) {
+      return res.status(401).json({ message: "Not authorized" });
+    }
+
+    res.json(transaction);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+// @desc   Update a transaction
+// @route  PUT /api/transactions/:id
+// @access Private
+export const updateTransaction = async (req, res) => {
+  try {
+    const transaction = await Transaction.findById(req.params.id);
+
+    if (!transaction) {
+      return res.status(404).json({ message: "Transaction not found" });
+    }
+
+    // Ensure user owns transaction
+    if (transaction.user.toString() !== req.user.id) {
+      return res.status(401).json({ message: "Not authorized" });
+    }
+
+    const { type, amount, category, description, date } = req.body;
+
+    transaction.type = type || transaction.type;
+    transaction.amount = amount || transaction.amount;
+    transaction.category = category || transaction.category;
+    transaction.description = description || transaction.description;
+    transaction.date = date || transaction.date;
+
+    const updatedTransaction = await transaction.save();
+    res.json(updatedTransaction);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

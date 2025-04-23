@@ -1,4 +1,4 @@
-import Investment from "../models/Investment.js";
+import Investment from "../model/Investment.js";
 
 // @desc   Add a new investment
 // @route  POST /api/investments

@@ -1,4 +1,4 @@
-import Savings from "../models/Savings.js";
+import Savings from "../model/Savings.js";
 
 // @desc   Add a new savings goal
 // @route  POST /api/savings
